@@ -53,6 +53,8 @@ var scenes;
                 this._enemy.setPosition(new objects.Vector2(Math.random() * config.Screen.WIDTH, Math.random() * config.Screen.HEIGHT));
                 this._enemy.on("click", this._onEnemyClick, this);
                 this.addChild(this._enemy);
+                // Add again to be first seen
+                this.addChild(this.myCursor);
             }
         };
         return Play;
