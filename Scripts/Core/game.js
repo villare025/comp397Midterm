@@ -1,10 +1,21 @@
 /// <reference path = "_reference.ts" />
+/*
+    File Name:             Game Core - TS|JS File
+    Authors:               Elaine Mae Villarino, Wallace Balaniuc
+    Last Modified By:      Elaine Mae Villarino
+    Last Modified Date:    Tuesday, October 18th, 2016
+    Website Name:          EV - COMP397 - Midterm
+    Program Description:   JS file that contains the components that
+                           are required to render the game's game core.
+    Revision History:      Add comments.
+*/
 // Global Variables
 var assets;
 var canvas;
 var stage;
 var currentScene;
 var scene;
+// Enemy SpriteSheet
 var enemyAtlas;
 // Preload Assets required
 var assetData = [
@@ -29,6 +40,7 @@ function init() {
     stage.enableMouseOver(20);
     createjs.Ticker.setFPS(config.Game.FPS);
     createjs.Ticker.on("tick", this.gameLoop, this);
+    // Create atlasData
     var atlasData = {
         "images": [
             assets.getResult("Enemy")
@@ -57,6 +69,7 @@ function init() {
             "Created with TexturePacker (https://www.codeandweb.com/texturepacker) for EaselJS"
         ]
     };
+    // Give atlasData to enemyAtlas
     enemyAtlas = new createjs.SpriteSheet(atlasData);
     scene = config.Scene.MENU;
     changeScene();

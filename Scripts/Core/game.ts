@@ -1,5 +1,14 @@
 /// <reference path = "_reference.ts" />
-
+/*
+	File Name:             Game Core - TS|JS File 
+	Authors:               Elaine Mae Villarino, Wallace Balaniuc
+    Last Modified By:      Elaine Mae Villarino 
+	Last Modified Date:    Tuesday, October 18th, 2016
+	Website Name:          EV - COMP397 - Midterm
+	Program Description:   JS file that contains the components that 
+                           are required to render the game's game core.
+    Revision History:      Add comments.
+*/
 // Global Variables
 var assets: createjs.LoadQueue;
 var canvas: HTMLElement;
@@ -8,6 +17,7 @@ var stage: createjs.Stage;
 var currentScene: objects.Scene;
 var scene: number;
 
+// Enemy SpriteSheet
 var enemyAtlas: createjs.SpriteSheet;
 
 // Preload Assets required
@@ -36,6 +46,7 @@ function init() {
     createjs.Ticker.setFPS(config.Game.FPS);
     createjs.Ticker.on("tick", this.gameLoop, this);
     
+    // Create atlasData
     let atlasData = {
 
         "images": [
@@ -69,7 +80,7 @@ function init() {
         ]
 
     }
-
+    // Give atlasData to enemyAtlas
     enemyAtlas = new createjs.SpriteSheet(atlasData);
 
     scene = config.Scene.MENU;
@@ -83,7 +94,6 @@ function gameLoop(event: createjs.Event): void {
 }
 
 function changeScene(): void {
-
     // Simple state machine pattern to define scene swapping.
     switch (scene) {
         case config.Scene.MENU:
@@ -97,5 +107,4 @@ function changeScene(): void {
             console.log("Starting SHOOTER scene");
             break;
     }
-
 }
