@@ -7,8 +7,9 @@ var objects;
 (function (objects) {
     var Enemy = (function (_super) {
         __extends(Enemy, _super);
-        function Enemy(imageString, life) {
+        function Enemy(imageString, life, deathAnimString) {
             _super.call(this, enemyAtlas, imageString, "");
+            this.deathAnimString = deathAnimString;
             this._life = life;
         }
         Object.defineProperty(Enemy.prototype, "life", {
