@@ -16,6 +16,15 @@ module scenes {
             this._bg = new createjs.Bitmap(assets.getResult("BGGame"));
             this.addChild(this._bg);
 
+            // gAH THE ENEMY
+            this._enemy = new objects.Enemy("robber", Math.floor((Math.random() * 5) + 1),"dead");
+            this._enemy.setPosition(new objects.Vector2(Math.random() * config.Screen.WIDTH, Math.random() * config.Screen.HEIGHT));
+            console.log("Enemy Life: " + this._enemy.life);
+            this.addChild(this._enemy);
+
+            //
+            this._enemy.on("click", this._onEnemyClick, this);
+
             // Mousy mouse
             stage.cursor = "none"; // hide their mouse
             this.myCursor = new createjs.Bitmap(assets.getResult("Mouse")); //use my mouse
