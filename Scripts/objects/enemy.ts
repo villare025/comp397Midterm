@@ -39,7 +39,7 @@ module objects {
             this._life--;
         }
 
-        private _dead(): void {
+        public _dead(): void {
             currentScene.removeChild(this);
         }
     }
