@@ -23,6 +23,13 @@ module scenes {
             this._bg = new createjs.Bitmap(assets.getResult("BGTitle"));
             this.addChild(this._bg);
 
+            // Blur
+            var blurFilter = new createjs.BlurFilter(5, 5, 1);
+            this._bg.filters = [blurFilter];
+            var bounds = blurFilter.getBounds();
+            // EVERYTHING
+            this._bg.cache(bounds.x, bounds.y, 800+bounds.width, 600+bounds.height);
+
             this._playBtn = new objects.Button("PlayBtn", config.Screen.CENTER_X, config.Screen.CENTER_Y + 150);
             this.addChild(this._playBtn);
             this._playBtn.on("click", this._playBtnClick, this);
