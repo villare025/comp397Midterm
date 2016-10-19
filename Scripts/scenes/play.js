@@ -23,10 +23,14 @@ var scenes;
             // gAH THE ENEMY
             this._enemy = new objects.Enemy("robber", Math.floor((Math.random() * 5) + 1), "dead");
             this._enemy.setPosition(new objects.Vector2(Math.random() * config.Screen.WIDTH, Math.random() * config.Screen.HEIGHT));
-            console.log("Enemy Life: " + this._enemy.life);
             this.addChild(this._enemy);
             //
             this._enemy.on("click", this._onEnemyClick, this);
+            // Instead of struggling over poof doing enemy health 
+            this._enemyHealthAmt = this._enemy.life;
+            // Create Label for scene and add to Game Scene container
+            this._enemyHealthText = new objects.Label("Enemy Health: " + this._enemyHealthAmt.toString(), "20px Kaushan Script", "#000000", config.Screen.CENTER_X, config.Screen.CENTER_Y - 200);
+            this.addChild(this._enemyHealthText);
             // Mousy mouse
             stage.cursor = "none"; // hide their mouse
             this.myCursor = new createjs.Bitmap(assets.getResult("Mouse")); //use my mouse
@@ -44,16 +48,20 @@ var scenes;
             this._scoreText.text = "Score: " + this._scoreAmt.toString();
             // Enemy Health Manage -1
             this._enemy.shot();
-            console.log("Remaining life: " + this._enemy.life);
-            if (this._enemy.life <= 0) {
-                //this._enemy.gotoAndPlay("dead");
+            this._enemyHealthAmt = this._enemy.life;
+            this._enemyHealthText.text = "Enemy Health: " + this._enemyHealthAmt.toString();
+            if (this._enemy.life == 0) {
+                //this._enemy.gotoAndP  lay("dead");
                 this._enemy._dead();
                 // Spawn new enemy 
                 this._enemy = new objects.Enemy("robber", Math.floor(Math.random() * 5) + 1, "dead");
                 this._enemy.setPosition(new objects.Vector2(Math.random() * config.Screen.WIDTH, Math.random() * config.Screen.HEIGHT));
                 this._enemy.on("click", this._onEnemyClick, this);
                 this.addChild(this._enemy);
-                // Add again to be first seen
+                //To not show 0 get new enemy health right away
+                this._enemyHealthAmt = this._enemy.life;
+                this._enemyHealthText.text = "Enemy Health: " + this._enemyHealthAmt.toString();
+                // Add mouse again to be first seen
                 this.addChild(this.myCursor);
             }
         };
