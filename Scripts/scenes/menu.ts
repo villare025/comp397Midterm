@@ -10,6 +10,7 @@ module scenes {
         // Label or bitmap
         // Button 
         private _playBtn : objects.Button;
+        private _bg: createjs.Bitmap;
         // Menu Class Contructor
         constructor() {
             super();
@@ -17,6 +18,10 @@ module scenes {
 
         public start() : void {
             console.log("Menu Scene Started");
+            
+            // Create BG for scene and add to Menu Scene container
+            this._bg = new createjs.Bitmap(assets.getResult("BGTitle"));
+            this.addChild(this._bg);
 
             this._playBtn = new objects.Button("PlayBtn", config.Screen.CENTER_X, config.Screen.CENTER_Y + 150);
             this.addChild(this._playBtn);

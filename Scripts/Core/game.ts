@@ -5,12 +5,16 @@ var assets: createjs.LoadQueue;
 var canvas: HTMLElement;
 var stage: createjs.Stage;
 
-var currentScene : objects.Scene;
+var currentScene: objects.Scene;
 var scene: number;
 
 // Preload Assets required
-var assetData:objects.Asset[] = [
-    {id: "PlayBtn", src: "../../Assets/images/sack.png"}
+var assetData: objects.Asset[] = [
+    { id: "PlayBtn", src: "../../Assets/images/sack.png" },
+    { id: "BGTitle", src: "../../Assets/images/bank.png" },
+    { id: "BGGame", src: "../../Assets/images/bank1.png" },
+    { id: "Mouse", src: "../../Assets/images/crosshair.png" },
+    { id: "Enemy", src: "../../Assets/images/robber.png" }
 ];
 
 function preload() {
@@ -40,21 +44,20 @@ function gameLoop(event: createjs.Event): void {
     stage.update();
 }
 
-function changeScene() : void {
-    
+function changeScene(): void {
+
     // Simple state machine pattern to define scene swapping.
-    switch(scene)
-    {
-        case config.Scene.MENU :
+    switch (scene) {
+        case config.Scene.MENU:
             stage.removeAllChildren();
             currentScene = new scenes.Menu();;
             console.log("Starting MENU scene");
             break;
-        case config.Scene.GAME :
+        case config.Scene.GAME:
             stage.removeAllChildren();
             currentScene = new scenes.Play();
             console.log("Starting SHOOTER scene");
             break;
     }
-    
+
 }

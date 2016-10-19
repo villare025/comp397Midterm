@@ -12,6 +12,9 @@ var scenes;
             this.start();
         }
         Play.prototype.start = function () {
+            // Create BG for scene and add to Game Scene container
+            this._bg = new createjs.Bitmap(assets.getResult("BGGame"));
+            this.addChild(this._bg);
             stage.addChild(this);
         };
         Play.prototype.update = function () {
