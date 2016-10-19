@@ -52,6 +52,7 @@ var objects;
         // Functions for when enemy is dead
         Enemy.prototype._dead = function () {
             // Remove enemy from scene
+            this.gotoAndPlay(this.deathAnimString);
             currentScene.removeChild(this);
         };
         return Enemy;

@@ -60,6 +60,7 @@ module objects {
         // Functions for when enemy is dead
         public _dead(): void {
             // Remove enemy from scene
+            this.gotoAndPlay(this.deathAnimString);
             currentScene.removeChild(this);
         }
     }
